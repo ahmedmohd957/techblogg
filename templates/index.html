@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+<!-- TITLE -->
+{% block title %}Home{% endblock %}
+
+<!-- ARTICLES SECTION -->
+
+{% block section %}
+    <section class="articles_section">
+        <div class="container">
+            <div class="row">
+                {% for article in articles %}
+                <div class="article">
+                    <a href="{{ url_for('article', article_id=article.id) }}" class="article_link">
+                        <h2>{{ article.title }}</h2>
+                        <span class="author">by {{ article.author.username }} - {{ article.created_date.strftime('%Y-%m-%d') }}</span>
+                        <p> {{ article.content }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

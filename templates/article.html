@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+<!-- TITLE -->
+{% block title %}From DJ to YouTuber: how Carlo successfully monetizes his channel with Sellfy{% endblock %}
+
+<!-- ARTICLE SECTION -->
+
+{% block section %}
+    <section class="article_section">
+        <div class="container">
+            {% if article.author == current_user %}
+            <div class="article_buttons">
+                <a href="{{ url_for('update_article', article_id=article.id) }}" class="article_btn update_btn">Update</a>
+                <a href="{{ url_for('delete_article', article_id=article.id) }}" class="article_btn delete_btn">Delete</a>
+            </div>
+            {% endif %}
+            <h1>{{ article.title }}</h1>
+            <span class="author">by {{ article.author.username }} - {{ article.created_date.strftime('%Y-%m-%d') }}</span>
+            <p>{{ article.content }}</p>
+        </div>
+    </section>
+{% endblock %}

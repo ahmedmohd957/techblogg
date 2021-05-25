@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+<!-- TITLE -->
+{% block title %}New Article{% endblock %}
+
+<!-- NEW ARTICLE SECTION -->
+
+{% block section %}
+    <section class="new_article_section">
+        <div class="container">
+            <form method="post" class="new_article_form">
+
+                {% if error %}
+                    <div class="error_message">
+                        <span>{{ error }}</span>
+                    </div>
+                {% endif %}
+
+                <div class="block">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="{% if isNew == False and article %}{{article.title}}{% endif %}" required />
+                </div>
+
+                <div class="block">
+                    <label for="content">Content</label>
+                    <textarea name="content" id="content" cols="35" rows="10" required>{% if isNew == False and article %}{{ article.content }}{% endif %}</textarea> <br />
+                </div>
+
+                <input type="submit" value="{% if isNew == False and article %}{{"UPDATE"}}{% else %}{{"PUBLISH"}}{% endif %}" />
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TechBlogg - {% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav class="nav">
+        <div class="container u-display-flex u-justify-content-space-between u-align-items-center u-full-height">
+            <div class="logo-box">
+                <a href="/" class="logo">TECHBLOGG</a>
+            </div>
+            <div class="nav-box">
+                <ul id="nav-ul">
+                    <li class="nav-list__item"><a href="/" class="nav-list__item-link">Home</a></li>
+                    <li class="nav-list__item"><a href="/new-article" class="nav-list__item-link">New Article</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-list__item"><a href="/logout" class="nav-list__item-link">Logout</a></li>
+                    {% else %}
+                        <li class="nav-list__item"><a href="/login" class="nav-list__item-link">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div class="main">
+        {% block section %}{% endblock %}
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <span>&copy; 2021 Techblogg All rights reserved</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>
